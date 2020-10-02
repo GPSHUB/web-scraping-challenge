@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mars Home Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<!-- Section 1: Jumbotron section with button linked to route / -->
+<body>
+  <h1 style="padding-top: 30px">
+  <div class="container">
+    <div class="jumbotron">      
+      <h2 class="display-12">Mission to Mars</h2>          
+      <a class="btn btn-primary btn-lg" style="background-color: rgba(236, 40, 26, 0.884);" href="/scrape" role="button">Scrape New Data</a>
+    </div>
+  </div>
+
+<!-- Section 2: Mars News section with Title & Paragraph -->
+<h1 style="padding-top: 20px"></h1>
+  <div class="container">    
+      <h2>Latest Mars News</h2>          
+      <h3 style="color: black">{{ mars_dict.news_title }}</h3>        
+      <p>{{mars_dict.news_p}}</p>                          
+  </div>
+
+<!-- Section 3: Mars Image section with Title & Full image -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12">
+      <h1> Featured Mars Image</h1>  
+      <img src="{{ mars_info.featured_image_url }}" alt="Featured Mars Image">          
+  </div>      
+
+<!-- Section 4: Mars Facts section with table -->  
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12">
+      <h2>Mars Facts</h2>        
+      {{ mars_dict.mars_facts}}                
+    </div>
+  </div>
+</div>
+
+<!-- Section 5: Mars Hemisphere section with Images and Titles -->  
+<div class="container">
+  <h3 class="text-center">Mars Hemispheres</h3>
+  <div class="card-deck">
+    <hr>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            {% for item in mars_dict.hem_img_url %}
+            <div class="col-md-6">
+              <div class="card text-white bg-dark" style="margin: 30px;">
+                <img class="card-img-top" src="{{ item.hem_img_url }}" />
+                <div class="card-body">
+                    <p class="card-text">{{ item.title2 }}</p>
+                </div>    
+              </div>  
+            </div>  
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
