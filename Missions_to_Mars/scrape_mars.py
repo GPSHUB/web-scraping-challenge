@@ -1,15 +1,14 @@
 from bs4 import BeautifulSoup 
 from splinter import Browser
 import pandas as pd 
-import requests 
 import time
 
 # Start browser
 def start_browser(): 
-    executable_path = {'executable_path': '/app/.chromedriver/bin/chromedriver'}
+    executable_path = {'executable_path': 'chromedriver'}
     browser = Browser('chrome', **executable_path, headless=False)    
 
-mars_dict = {}
+    mars_dict = {}
 
 # MARS NEWS
 def mars_news_scrape(browser):
@@ -19,6 +18,7 @@ def mars_news_scrape(browser):
     time.sleep(10)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
+
     try: 
         news_title = soup.find('div', class_='bottom_gradient').find('a').text
         news_p = soup.find('div', class_='rollover_description_inner').text
@@ -64,7 +64,6 @@ def mars_facts_scrape():
     mars_df.set_index('Mars - Earth Comparison', inplace=True)
     mars_df.head()
     del mars_df['Earth']
-    # html_table = mars_df.to_html()
     mars_dict['mars_facts'] = data
     return mars_dict
 
