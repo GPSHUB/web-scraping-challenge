@@ -21,8 +21,8 @@
 <h1 style="padding-top: 20px"></h1>
   <div class="container">    
       <h2>Latest Mars News</h2>          
-      <h3 style="color: black">{{ mars_dict.news_title }}</h3>        
-      <p>{{mars_dict.news_p}}</p>                          
+      <h3 style="color: black">{{ mars.news_title }}</h3>        
+      <p>{{mars.news_p}}</p>                          
   </div>
 
 <!-- Section 3: Mars Image section with Title & Full image -->
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
       <h1> Featured Mars Image</h1>  
-      <img src="{{ mars_info.featured_image_url }}" alt="Featured Mars Image">          
+      <img src="{{ mars.featured_image_url }}" alt="Featured Mars Image">          
   </div>      
 
 <!-- Section 4: Mars Facts section with table -->  
@@ -38,7 +38,7 @@
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12">
       <h2>Mars Facts</h2>        
-      {{ mars_dict.mars_facts}}                
+      {{ mars.mars_facts}}                
     </div>
   </div>
 </div>
@@ -52,12 +52,12 @@
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            {% for item in mars_dict.hem_img_url %}
+            {% for item in mars.hemisphere %}
             <div class="col-md-6">
               <div class="card text-white bg-dark" style="margin: 30px;">
-                <img class="card-img-top" src="{{ item.hem_img_url }}" />
+                <img class="card-img-top" src="{{ item.full_url }}" />
                 <div class="card-body">
-                    <p class="card-text">{{ item.title2 }}</p>
+                    <p class="card-text">{{ item.title }}</p>
                 </div>    
               </div>  
             </div>  
