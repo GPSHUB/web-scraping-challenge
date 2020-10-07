@@ -120,8 +120,8 @@ def mars_hemispheres_scrape(browser):
         dict_test["full_url"] =  f"https://astrogeology.usgs.gov/{full_img_url_final}"
         hem_result.append(dict_test)
 
-        return hem_result
+    return hem_result
         
-executable_path = {'executable_path': 'chromedriver'}
-browser = Browser('chrome', **executable_path, headless=False) 
-mars_hemispheres_scrape(browser)
+# executable_path = {'executable_path': 'chromedriver'}
+# browser = Browser('chrome', **executable_path, headless=False) 
+# mars_hemispheres_scrape(browser)
