@@ -75,9 +75,9 @@ def mars_facts_scrape():
         mars_df = tables[1]        
         mars_df.set_index('Mars - Earth Comparison', inplace=True)
         del mars_df['Earth']
+        mars_df = pd.DataFrame(mars_df)
     except BaseException:
-        return None    
-        
+        return None            
     return mars_df.to_html(classes="table")    
 
 # # MARS HEMISPHERES
@@ -93,9 +93,10 @@ def mars_hemispheres_scrape(browser):
     soup = BeautifulSoup(html, 'html.parser')
 
     result = soup.find_all('div', class_ = "item")
+    print(len(result))
 
     for item in result:        
-
+        print(item)
         # title loop
         title = item.find("div", class_="description")
         title2 = title.find('a', class_ = "itemLink product-item").find('h3').get_text()
@@ -108,14 +109,19 @@ def mars_hemispheres_scrape(browser):
         
         # Initiate browser, URL, Parse 
         browser.visit(full_url)
-        time.sleep(5)
+        time.sleep(10)
         html = browser.html
         url_soup = BeautifulSoup(html, 'html.parser')
         
+        #scrape full image URL
         full_img_url = url_soup.find("div", class_ = "downloads") 
-        result = full_img_url.select_one('ul li a')['href']  
+        full_img_url_final = full_img_url.select_one('ul li a')['href']  
         dict_test["title"] = title2
-        dict_test["full_url"] =  f"https://astrogeology.usgs.gov{result}"
+        dict_test["full_url"] =  f"https://astrogeology.usgs.gov/{full_img_url_final}"
         hem_result.append(dict_test)
 
         return hem_result
+        
+executable_path = {'executable_path': 'chromedriver'}
+browser = Browser('chrome', **executable_path, headless=False) 
+mars_hemispheres_scrape(browser)
