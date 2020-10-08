@@ -116,8 +116,11 @@ def mars_hemispheres_scrape(browser):
         #scrape full image URL
         full_img_url = url_soup.find("div", class_ = "downloads") 
         full_img_url_final = full_img_url.select_one('ul li a')['href']  
-        dict_test["title"] = title2
-        dict_test["full_url"] =  f"https://astrogeology.usgs.gov/{full_img_url_final}"
+        dict_test = {
+        "title": title2,
+        # "full_url": f"https://astrogeology.usgs.gov/{full_img_url_final}"
+        "full_url": f"{full_img_url_final}"
+    }
         hem_result.append(dict_test)
 
     return hem_result
